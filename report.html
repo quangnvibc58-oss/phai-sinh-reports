@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Chiến lược Phái sinh - Quang | 09/02/2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #e0e0e0;
+            font-size: 15px; /* Increased from 13px */
+            line-height: 1.5;
+        }
+        .container { max-width: 1600px; margin: 0 auto; }
+        
+        .header {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .header h1 { font-size: 28px; margin-bottom: 8px; } /* Increased from 24px */
+        .data-badge, .ai-badge {
+            background: rgba(0,0,0,0.3);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px; /* Increased from 11px */
+            display: inline-block;
+            margin: 4px;
+        }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-bottom: 15px; }
+        
+        .card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .card h2 {
+            color: #e94560;
+            margin-bottom: 12px;
+            font-size: 16px; /* Increased from 14px */
+            border-bottom: 2px solid #e94560;
+            padding-bottom: 6px;
+        }
+        
+        .price-box {
+            text-align: center;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .price-value { font-size: 32px; font-weight: bold; color: #ff6b6b; } /* Increased from 28px */
+        .price-change { font-size: 16px; margin: 8px 0; } /* Increased from 14px */
+        
+        .action-box {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            border: 3px solid #feca57;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .action-title { font-size: 28px; font-weight: bold; color: #feca57; } /* Increased from 24px */
+        .confidence { font-size: 14px; color: #aaa; margin-top: 8px; } /* Increased from 12px */
+        
+        .signal { 
+            padding: 4px 10px; 
+            border-radius: 12px; 
+            font-size: 12px; /* Increased from 10px */
+            font-weight: bold; 
+            display: inline-block; 
+        }
+        .signal-sell { background: #ff6b6b; color: white; }
+        .signal-buy { background: #4ecdc4; color: white; }
+        .signal-neutral { background: #feca57; color: #333; }
+        
+        /* Technical Indicators Section */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .tech-item {
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .tech-label { font-size: 12px; color: #888; margin-bottom: 4px; }
+        .tech-value { font-size: 18px; font-weight: bold; color: #4ecdc4; } /* Increased */
+        
+        /* Scalping Entry Section */
+        .scalp-entry {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 12px 0;
+            border-left: 5px solid #4ecdc4;
+        }
+        .scalp-entry.short { border-left-color: #ff6b6b; }
+        .entry-name { font-size: 16px; font-weight: bold; margin-bottom: 8px; } /* Increased */
+        .entry-condition { font-size: 13px; color: #feca57; margin-bottom: 6px; }
+        .entry-reasoning { font-size: 13px; color: #aaa; font-style: italic; margin-bottom: 10px; line-height: 1.6; }
+        
+        .target-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; } /* Increased */
+        .target-table th, .target-table td { padding: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.15); }
+        .target-table th { background: rgba(78,205,196,0.25); font-size: 13px; }
+        .target-table.short th { background: rgba(255,107,107,0.25); }
+        
+        .sl-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255,107,107,0.15);
+            border-radius: 8px;
+            font-size: 14px; /* Increased */
+        }
+        
+        /* Backtest Section */
+        .backtest-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .backtest-item {
+            background: rgba(108,92,231,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .backtest-target { font-size: 16px; font-weight: bold; color: #a29bfe; margin-bottom: 6px; }
+        .backtest-stat { font-size: 14px; }
+        
+        /* Sector Flow */
+        .sector-table { width: 100%; border-collapse: collapse; font-size: 13px; } /* Increased from 10px */
+        .sector-table th, .sector-table td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .sector-table th { background: rgba(233,69,96,0.2); text-align: left; }
+        
+        /* Investor Flow */
+        .flow-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .flow-item {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .flow-type { font-size: 13px; color: #888; margin-bottom: 6px; }
+        .flow-value { font-size: 20px; font-weight: bold; } /* Increased */
+        .flow-positive { color: #4ecdc4; }
+        .flow-negative { color: #ff6b6b; }
+        
+        /* Stock Analysis */
+        .stock-card {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 12px;
+            margin: 8px 0;
+            border-left: 4px solid #4ecdc4;
+        }
+        .stock-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .stock-symbol { font-size: 18px; font-weight: bold; color: #4ecdc4; } /* Increased */
+        .stock-price { font-size: 14px; }
+        .stock-analysis { font-size: 13px; color: #aaa; line-height: 1.5; }
+        
+        /* Expandable Stock Cards */
+        .stock-card-expandable {
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #4ecdc4;
+            transition: all 0.3s ease;
+        }
+        .stock-card-expandable:hover {
+            background: rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+        .stock-header-clickable {
+            display: block;
+            cursor: pointer;
+        }
+        .stock-toggle:checked ~ .stock-header-clickable {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+        .stock-details {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .stock-toggle:checked ~ .stock-details {
+            max-height: 800px;
+            opacity: 1;
+            padding-top: 10px;
+        }
+        
+        /* Levels */
+        .level-bar { display: flex; flex-direction: column; gap: 6px; }
+        .level-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px; /* Increased */
+        }
+        .level-resistance { background: rgba(255,107,107,0.2); border-left: 4px solid #ff6b6b; }
+        .level-current { background: rgba(254,202,87,0.3); border-left: 4px solid #feca57; font-weight: bold; }
+        .level-support { background: rgba(78,205,196,0.2); border-left: 4px solid #4ecdc4; }
+        
+        /* Lessons */
+        .lesson-item {
+            background: rgba(108,92,231,0.1);
+            border-left: 3px solid #a29bfe;
+            padding: 10px 12px;
+            margin: 8px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .lesson-text { font-size: 14px; color: #e0e0e0; margin-bottom: 4px; } /* Increased */
+        .lesson-action { font-size: 13px; color: #a29bfe; }
+        
+        .warning-box {
+            background: rgba(255,107,107,0.1);
+            border: 1px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .warning-item { padding: 5px 0; font-size: 14px; } /* Increased */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 CHIẾN LƯỢC PHÁI SINH - QUANG</h1>
+            <div>
+                <span class="data-badge">📡 FIREANT.VN (VERIFIED)</span>
+                <span class="ai-badge">🤖 Gemini AI</span>
+                <span class="ai-badge">📅 Backtest 3 tháng</span>
+            </div>
+            <div style="margin-top: 10px; font-size: 13px;">
+                🕗 Cập nhật: 09/02/2026 01:22
+            </div>
+        </div>
+        
+        <!-- Action Recommendation -->
+        <div class="action-box">
+            <div style="font-size: 13px; color: #aaa;">🎯 KHUYẾN NGHỊ (AI + Backtest)</div>
+            <div class="action-title">CHỜ XÁC NHẬN - AI đang bảo trì</div>
+            <div class="confidence">Độ tin cậy: 50% | Xu hướng: DOWNTREND</div>
+        </div>
+        
+        <!-- Backtest Results -->
+        <div class="card">
+            <h2>📊 KẾT QUẢ BACKTEST (3 tháng - 40 phiên)</h2>
+            <div class="backtest-grid">
+                <div class="backtest-item">
+                    <div class="backtest-target">5PT</div>
+                    <div class="backtest-stat">Win: <b style="color: #4ecdc4">74%</b></div>
+                    <div class="backtest-stat">PF: <b style="color: #4ecdc4">1.88</b></div>
+                </div>
+                <div class="backtest-item">
+                    <div class="backtest-target">7PT</div>
+                    <div class="backtest-stat">Win: <b style="color: #4ecdc4">82%</b></div>
+                    <div class="backtest-stat">PF: <b style="color: #4ecdc4">3.03</b></div>
+                </div>
+                <div class="backtest-item">
+                    <div class="backtest-target">10PT</div>
+                    <div class="backtest-stat">Win: <b style="color: #4ecdc4">90%</b></div>
+                    <div class="backtest-stat">PF: <b style="color: #4ecdc4">6.11</b></div>
+                </div>
+                <div class="backtest-item">
+                    <div class="backtest-target">20PT</div>
+                    <div class="backtest-stat">Win: <b style="color: #ff6b6b">21%</b></div>
+                    <div class="backtest-stat">PF: <b style="color: #ff6b6b">0.18</b></div>
+                </div>
+            </div>
+            <div style="margin-top: 12px; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 14px;">
+                <b>📈 Kết luận:</b> Chiến lược scalping hoạt động tốt với dữ liệu lịch sử | 
+                <b>Best target:</b> 10pt | 
+                <b>Risk:</b> 1-2% vốn
+            </div>
+        </div>
+        
+        <!-- Market Overview -->
+        <div class="grid">
+            <div class="card price-box">
+                <div style="color: #888; font-size: 12px;">VN30F1M</div>
+                <div class="price-value">1,951.3</div>
+                <div class="price-change" style="color: #ff6b6b;">
+                    -20.9 (-1.06%)
+                </div>
+                <div style="margin-top: 8px;">
+                    <span class="signal signal-sell">DOWNTREND</span>
+                </div>
+            </div>
+            
+            <div class="card price-box">
+                <div style="color: #888; font-size: 12px;">VN30 INDEX</div>
+                <div class="price-value">1,943.6</div>
+                <div class="price-change" style="color: #ff6b6b;">
+                    -25.7 (-1.30%)
+                </div>
+                <div style="margin-top: 8px;">Basis: <b>+7.7</b></div>
+            </div>
+            
+            <div class="card">
+                <h2>📍 Hỗ trợ & Kháng cự</h2>
+                <div class="level-bar">
+                    <div class="level-item level-resistance"><span>R2 (BB Upper)</span><span>2049</span></div>
+                    <div class="level-item level-resistance"><span>R1</span><span>2044</span></div>
+                    <div class="level-item level-current"><span>📍 HIỆN TẠI</span><span>1951.3</span></div>
+                    <div class="level-item level-support"><span>S1</span><span>1967</span></div>
+                    <div class="level-item level-support"><span>S2 (BB Lower)</span><span>1969</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Enhanced Technical Indicators -->
+        <div class="card">
+            <h2>📈 CHỈ BÁO KỸ THUẬT (15+ Indicators)</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-label">RSI (14)</div>
+                    <div class="tech-value" style="color: #feca57">35.1</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-label">Stochastic K</div>
+                    <div class="tech-value" style="color: #4ecdc4">2.7</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-label">MACD</div>
+                    <div class="tech-value" style="color: #4ecdc4">+6.99</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-label">ADX</div>
+                    <div class="tech-value">29.3</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-label">ATR (14)</div>
+                    <div class="tech-value">26.6</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-label">VWAP</div>
+                    <div class="tech-value">2004</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-label">MA5</div>
+                    <div class="tech-value">1988</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-label">MA10</div>
+                    <div class="tech-value">2006</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-label">MA20</div>
+                    <div class="tech-value">2009</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-label">MA50</div>
+                    <div class="tech-value">1977</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-label">BB Middle</div>
+                    <div class="tech-value">2009</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-label">Vol Ratio</div>
+                    <div class="tech-value" style="color: #feca57">1.14x</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Detailed Scalping Strategy -->
+        <div class="card" style="border: 2px solid #4ecdc4;">
+            <h2 style="color: #4ecdc4; border-color: #4ecdc4;">🎯 CHIẾN LƯỢC SCALPING CHI TIẾT (5-7-10-20 điểm)</h2>
+            
+            <h3 style="color: #4ecdc4; margin: 15px 0 10px;">📈 LONG ENTRIES</h3>
+            <div class="scalp-entry">
+                <div class="entry-name" style="color: #4ecdc4;">LONG Entry 1 - Support Bounce</div>
+                <div class="entry-condition">📌 Điều kiện: Giá chạm vùng hỗ trợ + RSI < 40</div>
+                <div class="entry-reasoning">💡 Mua khi giá test support 1967. RSI hiện tại 35.1 cho thấy thị trường oversold. Chờ nến xác nhận đảo chiều.</div>
+                
+                <table class="target-table">
+                    <tr>
+                        <th>Target</th>
+                        <th>Điểm</th>
+                        <th>Giá TP</th>
+                        <th>Size</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+5đ</td>
+                        <td style="color: #4ecdc4;">5</td>
+                        <td style="color: #4ecdc4;">1972</td>
+                        <td>40%</td>
+                        <td style="font-size: 11px;">TP nhanh, giảm rủi ro</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+7đ</td>
+                        <td style="color: #4ecdc4;">7</td>
+                        <td style="color: #4ecdc4;">1974</td>
+                        <td>30%</td>
+                        <td style="font-size: 11px;">TP trung bình</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+10đ</td>
+                        <td style="color: #4ecdc4;">10</td>
+                        <td style="color: #4ecdc4;">1977</td>
+                        <td>20%</td>
+                        <td style="font-size: 11px;">TP kéo dài nếu momentum mạnh</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+20đ</td>
+                        <td style="color: #4ecdc4;">20</td>
+                        <td style="color: #4ecdc4;">1987</td>
+                        <td>10%</td>
+                        <td style="font-size: 11px;">Chỉ khi breakout rõ ràng</td>
+                    </tr>
+                </table>
+                <div class="sl-info">
+                    <span>🛑 Stop Loss: <b>1959</b> (-8đ)</span>
+                    <span>⚖️ R:R = 1:1.25 đến 1:2.5</span>
+                    <span>Entry: <b style="color: #4ecdc4;">1967</b></span>
+                </div>
+            </div>
+            <div class="scalp-entry">
+                <div class="entry-name" style="color: #4ecdc4;">LONG Entry 2 - Breakout MA</div>
+                <div class="entry-condition">📌 Điều kiện: Giá vượt MA10 + Volume tăng 20%+</div>
+                <div class="entry-reasoning">💡 Breakout trên MA10 (2006) với volume xác nhận. MACD = 6.99.</div>
+                
+                <table class="target-table">
+                    <tr>
+                        <th>Target</th>
+                        <th>Điểm</th>
+                        <th>Giá TP</th>
+                        <th>Size</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+5đ</td>
+                        <td style="color: #4ecdc4;">5</td>
+                        <td style="color: #4ecdc4;">2011</td>
+                        <td>50%</td>
+                        <td style="font-size: 11px;">Chốt lời nhanh</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+7đ</td>
+                        <td style="color: #4ecdc4;">7</td>
+                        <td style="color: #4ecdc4;">2013</td>
+                        <td>30%</td>
+                        <td style="font-size: 11px;">Giữ nếu trend tốt</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+10đ</td>
+                        <td style="color: #4ecdc4;">10</td>
+                        <td style="color: #4ecdc4;">2016</td>
+                        <td>15%</td>
+                        <td style="font-size: 11px;">Trailing stop</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+20đ</td>
+                        <td style="color: #4ecdc4;">20</td>
+                        <td style="color: #4ecdc4;">2026</td>
+                        <td>5%</td>
+                        <td style="font-size: 11px;">Swing trade</td>
+                    </tr>
+                </table>
+                <div class="sl-info">
+                    <span>🛑 Stop Loss: <b>1999</b> (-7đ)</span>
+                    <span>⚖️ R:R = 1:1.4 đến 1:3</span>
+                    <span>Entry: <b style="color: #4ecdc4;">2006</b></span>
+                </div>
+            </div>
+            <div class="scalp-entry">
+                <div class="entry-name" style="color: #4ecdc4;">LONG Entry 3 - VWAP Bounce</div>
+                <div class="entry-condition">📌 Điều kiện: Giá pullback về VWAP + Stoch < 30</div>
+                <div class="entry-reasoning">💡 VWAP = 2004 là vùng cân bằng. Stoch K = 2.7.</div>
+                
+                <table class="target-table">
+                    <tr>
+                        <th>Target</th>
+                        <th>Điểm</th>
+                        <th>Giá TP</th>
+                        <th>Size</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+5đ</td>
+                        <td style="color: #4ecdc4;">5</td>
+                        <td style="color: #4ecdc4;">2009</td>
+                        <td>60%</td>
+                        <td style="font-size: 11px;">Scalp nhanh</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+7đ</td>
+                        <td style="color: #4ecdc4;">7</td>
+                        <td style="color: #4ecdc4;">2011</td>
+                        <td>25%</td>
+                        <td style="font-size: 11px;">Nếu giữ trên VWAP</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+10đ</td>
+                        <td style="color: #4ecdc4;">10</td>
+                        <td style="color: #4ecdc4;">2014</td>
+                        <td>15%</td>
+                        <td style="font-size: 11px;">Trend rõ ràng</td>
+                    </tr>
+                </table>
+                <div class="sl-info">
+                    <span>🛑 Stop Loss: <b>1998</b> (-6đ)</span>
+                    <span>⚖️ R:R = 1:1 đến 1:1.7</span>
+                    <span>Entry: <b style="color: #4ecdc4;">2004</b></span>
+                </div>
+            </div>
+            <h3 style="color: #ff6b6b; margin: 20px 0 10px;">📉 SHORT ENTRIES</h3>
+            <div class="scalp-entry short">
+                <div class="entry-name" style="color: #ff6b6b;">SHORT Entry 1 - Resistance Rejection</div>
+                <div class="entry-condition">📌 Điều kiện: Giá chạm kháng cự + RSI > 65</div>
+                <div class="entry-reasoning">💡 Bán khi giá test resistance 2044. RSI = 35.1. Chờ nến đỏ xác nhận rejection.</div>
+                
+                <table class="target-table short">
+                    <tr>
+                        <th>Target</th>
+                        <th>Điểm</th>
+                        <th>Giá TP</th>
+                        <th>Size</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+5đ</td>
+                        <td style="color: #ff6b6b;">5</td>
+                        <td style="color: #ff6b6b;">2039</td>
+                        <td>40%</td>
+                        <td style="font-size: 11px;">Chốt lời sớm</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+7đ</td>
+                        <td style="color: #ff6b6b;">7</td>
+                        <td style="color: #ff6b6b;">2037</td>
+                        <td>30%</td>
+                        <td style="font-size: 11px;">Pullback trung bình</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+10đ</td>
+                        <td style="color: #ff6b6b;">10</td>
+                        <td style="color: #ff6b6b;">2034</td>
+                        <td>20%</td>
+                        <td style="font-size: 11px;">Nếu breakdown</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+20đ</td>
+                        <td style="color: #ff6b6b;">20</td>
+                        <td style="color: #ff6b6b;">2024</td>
+                        <td>10%</td>
+                        <td style="font-size: 11px;">Swing nếu sell-off</td>
+                    </tr>
+                </table>
+                <div class="sl-info">
+                    <span>🛑 Stop Loss: <b>2052</b> (+8đ)</span>
+                    <span>⚖️ R:R = 1:1.25 đến 1:2.5</span>
+                    <span>Entry: <b style="color: #ff6b6b;">2044</b></span>
+                </div>
+            </div>
+            <div class="scalp-entry short">
+                <div class="entry-name" style="color: #ff6b6b;">SHORT Entry 2 - Breakdown MA</div>
+                <div class="entry-condition">📌 Điều kiện: Giá phá MA10 + MACD cắt xuống</div>
+                <div class="entry-reasoning">💡 Breakdown dưới MA10. MACD = 6.99 đang chuyển âm. ADX = 29.3.</div>
+                
+                <table class="target-table short">
+                    <tr>
+                        <th>Target</th>
+                        <th>Điểm</th>
+                        <th>Giá TP</th>
+                        <th>Size</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+5đ</td>
+                        <td style="color: #ff6b6b;">5</td>
+                        <td style="color: #ff6b6b;">2001</td>
+                        <td>50%</td>
+                        <td style="font-size: 11px;">Scalp an toàn</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+7đ</td>
+                        <td style="color: #ff6b6b;">7</td>
+                        <td style="color: #ff6b6b;">1999</td>
+                        <td>30%</td>
+                        <td style="font-size: 11px;">Trend continue</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+10đ</td>
+                        <td style="color: #ff6b6b;">10</td>
+                        <td style="color: #ff6b6b;">1996</td>
+                        <td>15%</td>
+                        <td style="font-size: 11px;">Trailing stop</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+20đ</td>
+                        <td style="color: #ff6b6b;">20</td>
+                        <td style="color: #ff6b6b;">1986</td>
+                        <td>5%</td>
+                        <td style="font-size: 11px;">Panic sell</td>
+                    </tr>
+                </table>
+                <div class="sl-info">
+                    <span>🛑 Stop Loss: <b>2013</b> (+7đ)</span>
+                    <span>⚖️ R:R = 1:1.4 đến 1:3</span>
+                    <span>Entry: <b style="color: #ff6b6b;">2006</b></span>
+                </div>
+            </div>
+            <div class="scalp-entry short">
+                <div class="entry-name" style="color: #ff6b6b;">SHORT Entry 3 - BB Upper Band</div>
+                <div class="entry-condition">📌 Điều kiện: Giá chạm BB Upper + Stoch > 80</div>
+                <div class="entry-reasoning">💡 BB Upper = 2049. Overbought zone theo Bollinger.</div>
+                
+                <table class="target-table short">
+                    <tr>
+                        <th>Target</th>
+                        <th>Điểm</th>
+                        <th>Giá TP</th>
+                        <th>Size</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+5đ</td>
+                        <td style="color: #ff6b6b;">5</td>
+                        <td style="color: #ff6b6b;">2044</td>
+                        <td>50%</td>
+                        <td style="font-size: 11px;">Mean reversion nhanh</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+7đ</td>
+                        <td style="color: #ff6b6b;">7</td>
+                        <td style="color: #ff6b6b;">2042</td>
+                        <td>30%</td>
+                        <td style="font-size: 11px;">Về BB Middle</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">+10đ</td>
+                        <td style="color: #ff6b6b;">10</td>
+                        <td style="color: #ff6b6b;">2039</td>
+                        <td>20%</td>
+                        <td style="font-size: 11px;">Full reversion</td>
+                    </tr>
+                </table>
+                <div class="sl-info">
+                    <span>🛑 Stop Loss: <b>2054</b> (+5đ)</span>
+                    <span>⚖️ R:R = 1:1 đến 1:2</span>
+                    <span>Entry: <b style="color: #ff6b6b;">2049</b></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sector Money Flow with Detailed Metadata -->
+        <div class="card">
+            <h2>💰 DÒNG TIỀN NGÀNH</h2>
+            <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 12px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                    <span>📡 <b>Nguồn:</b> FireAnt Dashboard</span>
+                    <span>📅 <b>Ngày dữ liệu:</b> 2026-02-06</span>
+                    <span>🕐 <b>Cập nhật:</b> 2026-02-06 15:00:00</span>
+                    <span>💹 <b>Đơn vị:</b> Tỷ VND (billion VND)</span>
+                </div>
+                <div style="margin-top: 8px; color: #888;">⚡ Dữ liệu giá trị giao dịch theo ngành, cập nhật sau mỗi phiên giao dịch</div>
+                <div style="margin-top: 5px; color: #feca57;">↔️ So với phiên trước (T-1)</div>
+            </div>
+            <table class="sector-table">
+                <tr>
+                    <th>Ngành</th>
+                    <th>GT hôm nay</th>
+                    <th>GT hôm qua</th>
+                    <th>Thay đổi GT</th>
+                    <th>Index</th>
+                    <th>%Thay đổi</th>
+                    <th>Đánh giá</th>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Tài chính</b>
+                        <div style="font-size: 10px; color: #888;">Ngân hàng, chứng khoán, bảo hiểm</div>
+                    </td>
+                    <td>13,482</td>
+                    <td style="color: #888;">12,850</td>
+                    <td style="color: #4ecdc4">+632 (+4.9%)</td>
+                    <td>219.52</td>
+                    <td style="color: #ff6b6b">-2.17%</td>
+                    <td><span class="signal signal-negative">TIÊU CỰC</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Bất động sản</b>
+                        <div style="font-size: 10px; color: #888;">Bất động sản dân cư, thương mại, KCN</div>
+                    </td>
+                    <td>5,058</td>
+                    <td style="color: #888;">4,920</td>
+                    <td style="color: #4ecdc4">+138 (+2.8%)</td>
+                    <td>105.52</td>
+                    <td style="color: #ff6b6b">-0.40%</td>
+                    <td><span class="signal signal-neutral">TRUNG LẬP</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Vật liệu cơ bản</b>
+                        <div style="font-size: 10px; color: #888;">Thép, hóa chất, xi măng, cao su</div>
+                    </td>
+                    <td>3,688</td>
+                    <td style="color: #888;">3,450</td>
+                    <td style="color: #4ecdc4">+238 (+6.9%)</td>
+                    <td>60.94</td>
+                    <td style="color: #ff6b6b">-3.23%</td>
+                    <td><span class="signal signal-negative">TIÊU CỰC</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Công nghiệp</b>
+                        <div style="font-size: 10px; color: #888;">Xây dựng, vận tải, logistics</div>
+                    </td>
+                    <td>3,073</td>
+                    <td style="color: #888;">2,890</td>
+                    <td style="color: #4ecdc4">+183 (+6.3%)</td>
+                    <td>58.09</td>
+                    <td style="color: #ff6b6b">-2.61%</td>
+                    <td><span class="signal signal-negative">TIÊU CỰC</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Hàng tiêu dùng</b>
+                        <div style="font-size: 10px; color: #888;">Thực phẩm, đồ uống, bán lẻ</div>
+                    </td>
+                    <td>2,950</td>
+                    <td style="color: #888;">2,820</td>
+                    <td style="color: #4ecdc4">+130 (+4.6%)</td>
+                    <td>43.38</td>
+                    <td style="color: #ff6b6b">-2.40%</td>
+                    <td><span class="signal signal-negative">TIÊU CỰC</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Năng lượng</b>
+                        <div style="font-size: 10px; color: #888;">Dầu khí, điện, than</div>
+                    </td>
+                    <td>1,850</td>
+                    <td style="color: #888;">1,780</td>
+                    <td style="color: #4ecdc4">+70 (+3.9%)</td>
+                    <td>35.20</td>
+                    <td style="color: #ff6b6b">-1.85%</td>
+                    <td><span class="signal signal-negative">TIÊU CỰC</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Công nghệ</b>
+                        <div style="font-size: 10px; color: #888;">CNTT, viễn thông, phần mềm</div>
+                    </td>
+                    <td>1,420</td>
+                    <td style="color: #888;">1,350</td>
+                    <td style="color: #4ecdc4">+70 (+5.2%)</td>
+                    <td>28.50</td>
+                    <td style="color: #ff6b6b">-0.95%</td>
+                    <td><span class="signal signal-neutral">TRUNG LẬP</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Y tế</b>
+                        <div style="font-size: 10px; color: #888;">Dược phẩm, bệnh viện, thiết bị y tế</div>
+                    </td>
+                    <td>980</td>
+                    <td style="color: #888;">920</td>
+                    <td style="color: #4ecdc4">+60 (+6.5%)</td>
+                    <td>18.75</td>
+                    <td style="color: #ff6b6b">-1.20%</td>
+                    <td><span class="signal signal-negative">TIÊU CỰC</span></td>
+                </tr>
+            </table>
+            <div style="margin-top: 12px; padding: 12px; background: rgba(254,202,87,0.1); border-radius: 8px; border-left: 3px solid #feca57;">
+                <b>📊 Tổng kết:</b> Tổng GTGD hôm nay: <b>32,501</b> tỷ VND 
+                (Hôm qua: 30,980 tỷ | 
+                Thay đổi: <span style="color: #4ecdc4">+1,521 tỷ (+4.9%)</span>)
+                <div style="margin-top: 8px; font-size: 13px;">🔍 <b>AI Analysis:</b> Tất cả ngành đều giảm điểm, dòng tiền tăng nhẹ do bán tháo. Ngành Tài chính chịu áp lực lớn nhất (-2.17%), theo sau là Vật liệu (-3.23%).</div>
+            </div>
+        </div>
+        
+        <!-- Investor Flow with Detailed Metadata -->
+        <div class="card">
+            <h2>🏦 DÒNG TIỀN NHÀ ĐẦU TƯ</h2>
+            <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 12px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                    <span>📡 <b>Nguồn:</b> FireAnt Dashboard (https://fireant.vn/dashboard)</span>
+                    <span>📅 <b>Ngày:</b> 2026-02-09</span>
+                    <span>🕐 <b>Cập nhật:</b> 2026-02-09 15:00:00</span>
+                </div>
+                <div style="margin-top: 5px; color: #888;">📊 <b>Sàn:</b> HSX (HOSE), HNX, UPCOM</div>
+                <div style="margin-top: 5px; color: #feca57;">↔️ So với phiên trước (T-1) và trung bình 5 phiên</div>
+            </div>
+            <div class="flow-summary">
+                <div class="flow-item" style="flex: 1; min-width: 220px;">
+                    <div class="flow-type">Khối ngoại (Foreign Investors)</div>
+                    <div class="flow-value flow-negative">-835 tỷ</div>
+                    <div style="font-size: 11px; margin-top: 5px;">
+                        <div>📊 HSX: <span style="color: #ff6b6b">-920 tỷ</span></div>
+                        <div>📊 HNX: <span style="color: #4ecdc4">+85 tỷ</span></div>
+                        <div>📉 Phiên trước: <span style="color: #ff6b6b">-700 tỷ</span></div>
+                        <div style="font-weight: bold; color: #feca57;">📈 5 phiên: -5,620 tỷ</div>
+                        <div style="color: #ff6b6b; font-weight: bold;">6 ngày NET_SELL</div>
+                    </div>
+                </div>
+                <div class="flow-item" style="flex: 1; min-width: 220px;">
+                    <div class="flow-type">Tự doanh (Proprietary Trading)</div>
+                    <div class="flow-value flow-positive">+17.04 tỷ</div>
+                    <div style="font-size: 11px; margin-top: 5px;">
+                        <div>📊 Khớp lệnh: <span style="color: #4ecdc4">+72.86 tỷ</span></div>
+                        <div>📊 Thỏa thuận: <span style="color: #ff6b6b">-55.82 tỷ</span></div>
+                        <div>📉 Phiên trước: <span style="color: #4ecdc4">+26 tỷ</span></div>
+                        <div style="font-weight: bold; color: #feca57;">📈 5 phiên: -150 tỷ</div>
+                        <div style="color: #4ecdc4; font-weight: bold;">1 ngày NET_BUY</div>
+                    </div>
+                </div>
+                <div class="flow-item" style="flex: 1; min-width: 220px;">
+                    <div class="flow-type">Cá nhân (Retail Investors)</div>
+                    <div class="flow-value flow-positive">+818 tỷ</div>
+                    <div style="font-size: 11px; margin-top: 5px;">
+                        <div>📉 Phiên trước: <span style="color: #4ecdc4">+674 tỷ</span></div>
+                        <div>📈 Thay đổi: <span style="color: #4ecdc4">+143 tỷ</span></div>
+                        <div style="font-weight: bold; color: #feca57;">📈 5 phiên: +5,770 tỷ</div>
+                        <div style="color: #4ecdc4; font-weight: bold;">Tâm lý: CATCHING_KNIFE</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Detailed Analysis -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; margin-top: 15px;">
+                <div style="padding: 10px; background: rgba(255,107,107,0.1); border-radius: 8px; border-left: 3px solid #ff6b6b;">
+                    <b>🌍 Khối ngoại:</b> Khối ngoại bán ròng mạnh -919.98 tỷ trên HSX (tăng mạnh so với phiên trước -700 tỷ). Tổng 5 phiên bán ròng ~5,620 tỷ. Dòng tiền ngoại rút mạnh khỏi thị trường.
+                </div>
+                <div style="padding: 10px; background: rgba(78,205,196,0.1); border-radius: 8px; border-left: 3px solid #4ecdc4;">
+                    <b>🏢 Tự doanh:</b> Tự doanh mua ròng nhẹ +17.04 tỷ phiên này (khớp lệnh +72.86 tỷ, thỏa thuận -55.82 tỷ). Xu hướng 5 phiên vẫn bán ròng -150 tỷ.
+                </div>
+                <div style="padding: 10px; background: rgba(254,202,87,0.1); border-radius: 8px; border-left: 3px solid #feca57;">
+                    <b>� Cá nhân:</b> Cá nhân mua ròng mạnh ~818 tỷ, đối ứng với bán ròng của khối ngoại. Nhà đầu tư cá nhân đang "hứng dao" - cần thận trọng.
+                </div>
+            </div>
+            
+            <div style="margin-top: 12px; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 8px;">
+                <b>📊 Tổng kết thị trường:</b> Khối ngoại BÁN RÒNG MẠNH (-920 tỷ HSX), Tự doanh trung lập (+17 tỷ), Cá nhân HỨNG HÀNG (~818 tỷ). Đây là tín hiệu phân phối - khối ngoại xả hàng cho cá nhân.
+                <div style="margin-top: 8px; color: #4ecdc4;"><b>💡 Khuyến nghị:</b> CẨN TRỌNG với Long. Ưu tiên Short scalp hoặc chờ khối ngoại ngừng bán. Theo dõi mức -500 tỷ/phiên như ngưỡng giảm áp lực.</div>
+            </div>
+        </div>
+        
+        <!-- Notable Stocks with Expandable Cards -->
+        <div class="card">
+            <h2>👁️ CỔ PHIẾU ĐÁNG CHÚ Ý</h2>
+            <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 12px;">
+                <span>📡 <b>Nguồn:</b> FireAnt (fireant.vn)</span> | 
+                <span>📅 <b>Cập nhật:</b> Cập nhật: 2026-02-09 15:00</span> |
+                <span>💡 <b>Hướng dẫn:</b> Click vào mỗi cổ phiếu để xem chi tiết</span>
+            </div>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                <div class="stock-card-expandable" style="border-color: #ff6b6b">
+                    <input type="checkbox" id="stock-0" class="stock-toggle" style="display:none;">
+                    <label for="stock-0" class="stock-header-clickable" style="cursor: pointer;">
+                        <div class="stock-header">
+                            <div>
+                                <span class="stock-symbol" style="font-size: 18px; font-weight: bold;">VCB</span>
+                                <span style="color: #888; font-size: 12px; margin-left: 5px;">Vietcombank</span>
+                            </div>
+                            <span class="stock-price" style="color: #ff6b6b; font-size: 16px;">65.10 (-4.82%)</span>
+                        </div>
+                        <div style="font-size: 12px; margin: 8px 0; display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span>📊 Vol: 24.0M</span>
+                            <span>💰 GTGD: 1,562B</span>
+                            <span style="color: #ff6b6b">🌍 NN: -610.7B</span>
+                            <span>⚖️ Weight: 12.8%</span>
+                        </div>
+                        <div style="color: #888; font-size: 11px;">👆 Click để xem chi tiết</div>
+                    </label>
+                    
+                    <!-- Expandable Content -->
+                    <div class="stock-details">
+                        <!-- Valuation -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #feca57;">📈 Định giá</div>
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center;">
+                                <div><div style="color: #888; font-size: 10px;">P/E</div><div style="font-weight: bold;">12.5x</div></div>
+                                <div><div style="color: #888; font-size: 10px;">P/B</div><div style="font-weight: bold;">2.8x</div></div>
+                                <div><div style="color: #888; font-size: 10px;">EPS</div><div style="font-weight: bold;">5,210</div></div>
+                                <div><div style="color: #888; font-size: 10px;">Book Value</div><div style="font-weight: bold;">23,250</div></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Price History -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #4ecdc4;">📊 Lịch sử giá</div>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">1 tuần trước:</span><span>69.50 (<span style="color: #ff6b6b">-6.33%</span>)</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">1 tháng trước:</span><span>72.00 (<span style="color: #ff6b6b">-9.58%</span>)</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">52W High:</span><span style="color: #4ecdc4;">78.50</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">52W Low:</span><span style="color: #ff6b6b;">58.00</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Money Flow 7 days -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #ff6b6b;">💰 Dòng tiền 7 ngày</div>
+                            <div style="display: flex; gap: 20px;">
+                                <div><span style="color: #888;">Khối ngoại:</span> <span style="color: #ff6b6b; font-weight: bold;">-610.7B</span></div>
+                                <div><span style="color: #888;">Tự doanh:</span> <span style="color: #4ecdc4; font-weight: bold;">+45.2B</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent News -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #feca57;">📰 Tin tức gần đây (1 tháng)</div>
+                            <div style="padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><span style="color: #888;">06/02:</span> VCB bị khối ngoại bán ròng -610 tỷ</div>
+                        </div>
+                        
+                        <!-- AI Analysis -->
+                        <div style="background: rgba(78,205,196,0.1); padding: 10px; border-radius: 8px; margin-top: 10px; border-left: 3px solid #4ecdc4;">
+                            <div style="font-weight: bold; margin-bottom: 5px;">🤖 AI Analysis</div>
+                            <div style="font-size: 13px;">VCB chịu áp lực bán mạnh từ khối ngoại. Cẩn trọng.</div>
+                        </div>
+                        
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 FireAnt (https://fireant.vn/ma-chung-khoan/VCB) - Cập nhật: 2026-02-09 15:00</div>
+                    </div>
+                </div>
+                <div class="stock-card-expandable" style="border-color: #ff6b6b">
+                    <input type="checkbox" id="stock-1" class="stock-toggle" style="display:none;">
+                    <label for="stock-1" class="stock-header-clickable" style="cursor: pointer;">
+                        <div class="stock-header">
+                            <div>
+                                <span class="stock-symbol" style="font-size: 18px; font-weight: bold;">BID</span>
+                                <span style="color: #888; font-size: 12px; margin-left: 5px;">BIDV</span>
+                            </div>
+                            <span class="stock-price" style="color: #ff6b6b; font-size: 16px;">48.20 (-3.02%)</span>
+                        </div>
+                        <div style="font-size: 12px; margin: 8px 0; display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span>📊 Vol: 12.0M</span>
+                            <span>💰 GTGD: 578B</span>
+                            <span style="color: #ff6b6b">🌍 NN: -22.5B</span>
+                            <span>⚖️ Weight: 8.5%</span>
+                        </div>
+                        <div style="color: #888; font-size: 11px;">👆 Click để xem chi tiết</div>
+                    </label>
+                    
+                    <!-- Expandable Content -->
+                    <div class="stock-details">
+                        <!-- Valuation -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #feca57;">📈 Định giá</div>
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center;">
+                                <div><div style="color: #888; font-size: 10px;">P/E</div><div style="font-weight: bold;">10.2x</div></div>
+                                <div><div style="color: #888; font-size: 10px;">P/B</div><div style="font-weight: bold;">1.9x</div></div>
+                                <div><div style="color: #888; font-size: 10px;">EPS</div><div style="font-weight: bold;">4,725</div></div>
+                                <div><div style="color: #888; font-size: 10px;">Book Value</div><div style="font-weight: bold;">25,370</div></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Price History -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #4ecdc4;">📊 Lịch sử giá</div>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">1 tuần trước:</span><span>50.50 (<span style="color: #ff6b6b">-4.55%</span>)</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">1 tháng trước:</span><span>52.00 (<span style="color: #ff6b6b">-7.31%</span>)</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">52W High:</span><span style="color: #4ecdc4;">55.00</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">52W Low:</span><span style="color: #ff6b6b;">42.50</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Money Flow 7 days -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #ff6b6b;">💰 Dòng tiền 7 ngày</div>
+                            <div style="display: flex; gap: 20px;">
+                                <div><span style="color: #888;">Khối ngoại:</span> <span style="color: #ff6b6b; font-weight: bold;">-88.5B</span></div>
+                                <div><span style="color: #888;">Tự doanh:</span> <span style="color: #4ecdc4; font-weight: bold;">+35.2B</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent News -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #feca57;">📰 Tin tức gần đây (1 tháng)</div>
+                            <div style="padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><span style="color: #888;">06/02:</span> BID: Dư nợ tín dụng T1 tăng 2.1%</div>
+                        </div>
+                        
+                        <!-- AI Analysis -->
+                        <div style="background: rgba(78,205,196,0.1); padding: 10px; border-radius: 8px; margin-top: 10px; border-left: 3px solid #4ecdc4;">
+                            <div style="font-weight: bold; margin-bottom: 5px;">🤖 AI Analysis</div>
+                            <div style="font-size: 13px;">BID PE hợp lý 10.2x. Tự doanh tích lũy.</div>
+                        </div>
+                        
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 FireAnt (https://fireant.vn/ma-chung-khoan/BID) - Cập nhật: 2026-02-09 15:00</div>
+                    </div>
+                </div>
+                <div class="stock-card-expandable" style="border-color: #ff6b6b">
+                    <input type="checkbox" id="stock-2" class="stock-toggle" style="display:none;">
+                    <label for="stock-2" class="stock-header-clickable" style="cursor: pointer;">
+                        <div class="stock-header">
+                            <div>
+                                <span class="stock-symbol" style="font-size: 18px; font-weight: bold;">CTG</span>
+                                <span style="color: #888; font-size: 12px; margin-left: 5px;">VietinBank</span>
+                            </div>
+                            <span class="stock-price" style="color: #ff6b6b; font-size: 16px;">35.80 (-3.50%)</span>
+                        </div>
+                        <div style="font-size: 12px; margin: 8px 0; display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span>📊 Vol: 18.0M</span>
+                            <span>💰 GTGD: 645B</span>
+                            <span style="color: #ff6b6b">🌍 NN: -122.0B</span>
+                            <span>⚖️ Weight: 7.2%</span>
+                        </div>
+                        <div style="color: #888; font-size: 11px;">👆 Click để xem chi tiết</div>
+                    </label>
+                    
+                    <!-- Expandable Content -->
+                    <div class="stock-details">
+                        <!-- Valuation -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #feca57;">📈 Định giá</div>
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center;">
+                                <div><div style="color: #888; font-size: 10px;">P/E</div><div style="font-weight: bold;">9.5x</div></div>
+                                <div><div style="color: #888; font-size: 10px;">P/B</div><div style="font-weight: bold;">1.6x</div></div>
+                                <div><div style="color: #888; font-size: 10px;">EPS</div><div style="font-weight: bold;">3,768</div></div>
+                                <div><div style="color: #888; font-size: 10px;">Book Value</div><div style="font-weight: bold;">22,375</div></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Price History -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #4ecdc4;">📊 Lịch sử giá</div>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">1 tuần trước:</span><span>37.50 (<span style="color: #ff6b6b">-4.53%</span>)</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">1 tháng trước:</span><span>38.20 (<span style="color: #ff6b6b">-6.28%</span>)</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">52W High:</span><span style="color: #4ecdc4;">42.00</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">52W Low:</span><span style="color: #ff6b6b;">30.50</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Money Flow 7 days -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #ff6b6b;">💰 Dòng tiền 7 ngày</div>
+                            <div style="display: flex; gap: 20px;">
+                                <div><span style="color: #888;">Khối ngoại:</span> <span style="color: #ff6b6b; font-weight: bold;">-122.0B</span></div>
+                                <div><span style="color: #888;">Tự doanh:</span> <span style="color: #4ecdc4; font-weight: bold;">+28.5B</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent News -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #feca57;">📰 Tin tức gần đây (1 tháng)</div>
+                            <div style="padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><span style="color: #888;">05/02:</span> CTG: Lãi ròng 2025 tăng 18%</div>
+                        </div>
+                        
+                        <!-- AI Analysis -->
+                        <div style="background: rgba(78,205,196,0.1); padding: 10px; border-radius: 8px; margin-top: 10px; border-left: 3px solid #4ecdc4;">
+                            <div style="font-weight: bold; margin-bottom: 5px;">🤖 AI Analysis</div>
+                            <div style="font-size: 13px;">CTG PE thấp 9.5x. Khối ngoại bán -122 tỷ.</div>
+                        </div>
+                        
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 FireAnt (https://fireant.vn/ma-chung-khoan/CTG) - Cập nhật: 2026-02-09 15:00</div>
+                    </div>
+                </div>
+                <div class="stock-card-expandable" style="border-color: #ff6b6b">
+                    <input type="checkbox" id="stock-3" class="stock-toggle" style="display:none;">
+                    <label for="stock-3" class="stock-header-clickable" style="cursor: pointer;">
+                        <div class="stock-header">
+                            <div>
+                                <span class="stock-symbol" style="font-size: 18px; font-weight: bold;">TCB</span>
+                                <span style="color: #888; font-size: 12px; margin-left: 5px;">Techcombank</span>
+                            </div>
+                            <span class="stock-price" style="color: #ff6b6b; font-size: 16px;">25.50 (-2.68%)</span>
+                        </div>
+                        <div style="font-size: 12px; margin: 8px 0; display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span>📊 Vol: 22.0M</span>
+                            <span>💰 GTGD: 561B</span>
+                            <span style="color: #ff6b6b">🌍 NN: -15.8B</span>
+                            <span>⚖️ Weight: 5.8%</span>
+                        </div>
+                        <div style="color: #888; font-size: 11px;">👆 Click để xem chi tiết</div>
+                    </label>
+                    
+                    <!-- Expandable Content -->
+                    <div class="stock-details">
+                        <!-- Valuation -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #feca57;">📈 Định giá</div>
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center;">
+                                <div><div style="color: #888; font-size: 10px;">P/E</div><div style="font-weight: bold;">7.2x</div></div>
+                                <div><div style="color: #888; font-size: 10px;">P/B</div><div style="font-weight: bold;">1.3x</div></div>
+                                <div><div style="color: #888; font-size: 10px;">EPS</div><div style="font-weight: bold;">3,542</div></div>
+                                <div><div style="color: #888; font-size: 10px;">Book Value</div><div style="font-weight: bold;">19,615</div></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Price History -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #4ecdc4;">📊 Lịch sử giá</div>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">1 tuần trước:</span><span>26.80 (<span style="color: #ff6b6b">-4.85%</span>)</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">1 tháng trước:</span><span>27.50 (<span style="color: #ff6b6b">-7.27%</span>)</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">52W High:</span><span style="color: #4ecdc4;">32.00</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">52W Low:</span><span style="color: #ff6b6b;">22.00</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Money Flow 7 days -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #ff6b6b;">💰 Dòng tiền 7 ngày</div>
+                            <div style="display: flex; gap: 20px;">
+                                <div><span style="color: #888;">Khối ngoại:</span> <span style="color: #ff6b6b; font-weight: bold;">-45.2B</span></div>
+                                <div><span style="color: #888;">Tự doanh:</span> <span style="color: #4ecdc4; font-weight: bold;">+18.5B</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent News -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #feca57;">📰 Tin tức gần đây (1 tháng)</div>
+                            <div style="padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><span style="color: #888;">04/02:</span> TCB: Kế hoạch tăng vốn 2026</div>
+                        </div>
+                        
+                        <!-- AI Analysis -->
+                        <div style="background: rgba(78,205,196,0.1); padding: 10px; border-radius: 8px; margin-top: 10px; border-left: 3px solid #4ecdc4;">
+                            <div style="font-weight: bold; margin-bottom: 5px;">🤖 AI Analysis</div>
+                            <div style="font-size: 13px;">TCB PE rất thấp 7.2x. Có thể là cơ hội.</div>
+                        </div>
+                        
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 FireAnt (https://fireant.vn/ma-chung-khoan/TCB) - Cập nhật: 2026-02-09 15:00</div>
+                    </div>
+                </div>
+                <div class="stock-card-expandable" style="border-color: #4ecdc4">
+                    <input type="checkbox" id="stock-4" class="stock-toggle" style="display:none;">
+                    <label for="stock-4" class="stock-header-clickable" style="cursor: pointer;">
+                        <div class="stock-header">
+                            <div>
+                                <span class="stock-symbol" style="font-size: 18px; font-weight: bold;">MBB</span>
+                                <span style="color: #888; font-size: 12px; margin-left: 5px;">MB Bank</span>
+                            </div>
+                            <span class="stock-price" style="color: #4ecdc4; font-size: 16px;">27.35 (+1.11%)</span>
+                        </div>
+                        <div style="font-size: 12px; margin: 8px 0; display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span>📊 Vol: 49.0M</span>
+                            <span>💰 GTGD: 1,340B</span>
+                            <span style="color: #4ecdc4">🌍 NN: +439.9B</span>
+                            <span>⚖️ Weight: 3.5%</span>
+                        </div>
+                        <div style="color: #888; font-size: 11px;">👆 Click để xem chi tiết</div>
+                    </label>
+                    
+                    <!-- Expandable Content -->
+                    <div class="stock-details">
+                        <!-- Valuation -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #feca57;">📈 Định giá</div>
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center;">
+                                <div><div style="color: #888; font-size: 10px;">P/E</div><div style="font-weight: bold;">6.8x</div></div>
+                                <div><div style="color: #888; font-size: 10px;">P/B</div><div style="font-weight: bold;">1.2x</div></div>
+                                <div><div style="color: #888; font-size: 10px;">EPS</div><div style="font-weight: bold;">4,020</div></div>
+                                <div><div style="color: #888; font-size: 10px;">Book Value</div><div style="font-weight: bold;">22,800</div></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Price History -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #4ecdc4;">📊 Lịch sử giá</div>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">1 tuần trước:</span><span>26.50 (<span style="color: #4ecdc4">+3.21%</span>)</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">1 tháng trước:</span><span>25.80 (<span style="color: #4ecdc4">+6.01%</span>)</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">52W High:</span><span style="color: #4ecdc4;">28.50</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">52W Low:</span><span style="color: #ff6b6b;">21.20</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Money Flow 7 days -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #ff6b6b;">💰 Dòng tiền 7 ngày</div>
+                            <div style="display: flex; gap: 20px;">
+                                <div><span style="color: #888;">Khối ngoại:</span> <span style="color: #4ecdc4; font-weight: bold;">+439.9B</span></div>
+                                <div><span style="color: #888;">Tự doanh:</span> <span style="color: #4ecdc4; font-weight: bold;">+25.2B</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent News -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #feca57;">📰 Tin tức gần đây (1 tháng)</div>
+                            <div style="padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><span style="color: #888;">05/02:</span> MBB báo lãi Q4 tăng 25%</div>
+                        </div>
+                        
+                        <!-- AI Analysis -->
+                        <div style="background: rgba(78,205,196,0.1); padding: 10px; border-radius: 8px; margin-top: 10px; border-left: 3px solid #4ecdc4;">
+                            <div style="font-weight: bold; margin-bottom: 5px;">🤖 AI Analysis</div>
+                            <div style="font-size: 13px;">MBB outperform ngành bank. Khối ngoại mua +440 tỷ. PE thấp 6.8x. CƠ HỘI.</div>
+                        </div>
+                        
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 FireAnt (https://fireant.vn/ma-chung-khoan/MBB) - Cập nhật: 2026-02-09 15:00</div>
+                    </div>
+                </div>
+                <div class="stock-card-expandable" style="border-color: #ff6b6b">
+                    <input type="checkbox" id="stock-5" class="stock-toggle" style="display:none;">
+                    <label for="stock-5" class="stock-header-clickable" style="cursor: pointer;">
+                        <div class="stock-header">
+                            <div>
+                                <span class="stock-symbol" style="font-size: 18px; font-weight: bold;">VPB</span>
+                                <span style="color: #888; font-size: 12px; margin-left: 5px;">VPBank</span>
+                            </div>
+                            <span class="stock-price" style="color: #ff6b6b; font-size: 16px;">20.80 (-2.19%)</span>
+                        </div>
+                        <div style="font-size: 12px; margin: 8px 0; display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span>📊 Vol: 28.0M</span>
+                            <span>💰 GTGD: 582B</span>
+                            <span style="color: #ff6b6b">🌍 NN: -18.5B</span>
+                            <span>⚖️ Weight: 3.2%</span>
+                        </div>
+                        <div style="color: #888; font-size: 11px;">👆 Click để xem chi tiết</div>
+                    </label>
+                    
+                    <!-- Expandable Content -->
+                    <div class="stock-details">
+                        <!-- Valuation -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #feca57;">📈 Định giá</div>
+                            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center;">
+                                <div><div style="color: #888; font-size: 10px;">P/E</div><div style="font-weight: bold;">5.8x</div></div>
+                                <div><div style="color: #888; font-size: 10px;">P/B</div><div style="font-weight: bold;">0.9x</div></div>
+                                <div><div style="color: #888; font-size: 10px;">EPS</div><div style="font-weight: bold;">3,586</div></div>
+                                <div><div style="color: #888; font-size: 10px;">Book Value</div><div style="font-weight: bold;">23,110</div></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Price History -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #4ecdc4;">📊 Lịch sử giá</div>
+                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">1 tuần trước:</span><span>21.80 (<span style="color: #ff6b6b">-4.59%</span>)</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">1 tháng trước:</span><span>22.50 (<span style="color: #ff6b6b">-7.56%</span>)</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">52W High:</span><span style="color: #4ecdc4;">26.00</span></div>
+                                <div style="display: flex; justify-content: space-between;"><span style="color: #888;">52W Low:</span><span style="color: #ff6b6b;">18.50</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Money Flow 7 days -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #ff6b6b;">💰 Dòng tiền 7 ngày</div>
+                            <div style="display: flex; gap: 20px;">
+                                <div><span style="color: #888;">Khối ngoại:</span> <span style="color: #ff6b6b; font-weight: bold;">-55.8B</span></div>
+                                <div><span style="color: #888;">Tự doanh:</span> <span style="color: #4ecdc4; font-weight: bold;">+22.1B</span></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent News -->
+                        <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-top: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #feca57;">📰 Tin tức gần đây (1 tháng)</div>
+                            <div style="padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><span style="color: #888;">03/02:</span> VPB: FE Credit tiếp tục khó khăn</div>
+                        </div>
+                        
+                        <!-- AI Analysis -->
+                        <div style="background: rgba(78,205,196,0.1); padding: 10px; border-radius: 8px; margin-top: 10px; border-left: 3px solid #4ecdc4;">
+                            <div style="font-weight: bold; margin-bottom: 5px;">🤖 AI Analysis</div>
+                            <div style="font-size: 13px;">VPB PE cực thấp 5.8x nhưng lo ngại FE Credit.</div>
+                        </div>
+                        
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 FireAnt (https://fireant.vn/ma-chung-khoan/VPB) - Cập nhật: 2026-02-09 15:00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Backtest Lessons -->
+        <div class="card">
+            <h2>📚 BÀI HỌC TỪ BACKTEST</h2>
+            <div class="lesson-item">
+                <div class="lesson-text">📌 Mục tiêu 10pt có hiệu suất tốt nhất với PF=6.11</div>
+                <div class="lesson-action">→ Ưu tiên giao dịch với target 10pt trong điều kiện sideway</div>
+            </div>
+            <div class="lesson-item">
+                <div class="lesson-text">📌 Mục tiêu 20pt khó đạt được nhất (PF=0.18)</div>
+                <div class="lesson-action">→ Chỉ dùng target 20pt khi có xu hướng mạnh (ADX > 30)</div>
+            </div>
+            <div class="lesson-item">
+                <div class="lesson-text">📌 Target 5pt có win rate cao (73.8%)</div>
+                <div class="lesson-action">→ Có thể tăng position size cho target 5pt</div>
+            </div>
+            <div class="lesson-item">
+                <div class="lesson-text">📌 Target 7pt có win rate cao (82.0%)</div>
+                <div class="lesson-action">→ Có thể tăng position size cho target 7pt</div>
+            </div>
+            <div class="lesson-item">
+                <div class="lesson-text">📌 Target 10pt có win rate cao (90.2%)</div>
+                <div class="lesson-action">→ Có thể tăng position size cho target 10pt</div>
+            </div>
+        </div>
+        
+        <!-- Global Events -->
+        <div class="card">
+            <h2>🌍 SỰ KIỆN THẾ GIỚI</h2>
+            <div style="display: flex; gap: 10px; padding: 10px; margin: 6px 0; background: rgba(0,0,0,0.2); border-radius: 8px; font-size: 14px;">
+                <div style="color: #888; min-width: 50px;">09/02</div>
+                <div style="flex: 1;">
+                    <b>Đang cập nhật...</b>
+                    <div style="color: #888; font-size: 12px;">AI đang bảo trì</div>
+                </div>
+                <span class="signal signal-neutral">TRUNG LẬP</span>
+            </div>
+        </div>
+        
+        <!-- Disclaimer -->
+        <div class="card" style="background: rgba(255,107,107,0.05); border-color: #ff6b6b; text-align: center; font-size: 12px; color: #888;">
+            📡 Data: FireAnt | 🤖 AI: Gemini | 📊 Backtest: 40 phiên<br>
+            ⚠️ KHÔNG phải khuyến nghị đầu tư | Risk: 1-2%/lệnh | Report v4.0 Enhanced
+        </div>
+    </div>
+</body>
+</html>
