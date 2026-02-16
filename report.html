@@ -250,12 +250,12 @@
         <div class="header">
             <h1>📊 CHIẾN LƯỢC PHÁI SINH - QUANG</h1>
             <div>
-                <span class="data-badge">📡 TRADINGVIEW - 2026-02-16T11:17:57.030033</span>
+                <span class="data-badge">📡 TRADINGVIEW - 2026-02-16T11:24:44.044351</span>
                 <span class="ai-badge">🤖 Gemini AI</span>
                 <span class="ai-badge">📅 Backtest 3 tháng</span>
             </div>
             <div style="margin-top: 10px; font-size: 13px;">
-                🕗 Cập nhật: 16/02/2026 11:17
+                🕗 Cập nhật: 16/02/2026 11:24
             </div>
         </div>
         
@@ -346,14 +346,14 @@
                 <!-- Tables -->
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                     <div>
-                        <h3 style="font-size: 14px; color: #4ecdc4; border-bottom: 1px solid #4ecdc4; padding-bottom: 5px;">🌍 Top Mua (NN)</h3>
+                        <h3 style="font-size: 14px; color: #4ecdc4; border-bottom: 1px solid #4ecdc4; padding-bottom: 5px;">📈 Top Tăng VN30</h3>
                         <table class="flow-table">
-                            <tr><th>Mã</th><th style="text-align: right;">Giá trị</th></tr></table>
+                            <tr><th>Mã</th><th style="text-align: right;">%Change</th></tr><tr><td><b>VIX</b></td><td style="text-align: right; color: #4ecdc4;">+2.97%</td></tr><tr><td><b>GVR</b></td><td style="text-align: right; color: #4ecdc4;">+2.97%</td></tr><tr><td><b>BSR</b></td><td style="text-align: right; color: #4ecdc4;">+2.51%</td></tr><tr><td><b>STB</b></td><td style="text-align: right; color: #4ecdc4;">+2.45%</td></tr><tr><td><b>CTG</b></td><td style="text-align: right; color: #4ecdc4;">+1.58%</td></tr></table>
                     </div>
                     <div>
-                        <h3 style="font-size: 14px; color: #feca57; border-bottom: 1px solid #feca57; padding-bottom: 5px;">🏢 Top Mua (TD)</h3>
+                        <h3 style="font-size: 14px; color: #ff6b6b; border-bottom: 1px solid #ff6b6b; padding-bottom: 5px;">📉 Top Giảm VN30</h3>
                         <table class="flow-table">
-                            <tr><th>Mã</th><th style="text-align: right;">Giá trị</th></tr></table>
+                            <tr><th>Mã</th><th style="text-align: right;">%Change</th></tr><tr><td><b>FPT</b></td><td style="text-align: right; color: #ff6b6b;">-2.53%</td></tr><tr><td><b>NVL</b></td><td style="text-align: right; color: #ff6b6b;">-2.32%</td></tr><tr><td><b>PDR</b></td><td style="text-align: right; color: #ff6b6b;">-1.69%</td></tr><tr><td><b>BID</b></td><td style="text-align: right; color: #ff6b6b;">-1.37%</td></tr><tr><td><b>SAB</b></td><td style="text-align: right; color: #ff6b6b;">-0.61%</td></tr></table>
                     </div>
                 </div>
             </div>
@@ -405,51 +405,51 @@
             <div class="tech-grid">
                 <div class="tech-item">
                     <div class="tech-label">RSI (14)</div>
-                    <div class="tech-value" style="color: {'#ff6b6b' if market_data.get('rsi', 50) > 70 else ('#4ecdc4' if market_data.get('rsi', 50) < 30 else '#feca57')}">{market_data.get('rsi', 50):.1f}</div>
+                    <div class="tech-value" style="color: #feca57">32.5</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-label">Stochastic K</div>
-                    <div class="tech-value" style="color: {'#ff6b6b' if market_data.get('stoch_k', 50) > 80 else ('#4ecdc4' if market_data.get('stoch_k', 50) < 20 else '#feca57')}">{market_data.get('stoch_k', 50):.1f}</div>
+                    <div class="tech-value" style="color: #4ecdc4">7.1</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-label">MACD</div>
-                    <div class="tech-value" style="color: {'#4ecdc4' if market_data.get('macd', 0) > 0 else '#ff6b6b'}">{market_data.get('macd', 0):+.2f}</div>
+                    <div class="tech-value" style="color: #4ecdc4">+1.74</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-label">ADX</div>
-                    <div class="tech-value">{market_data.get('adx', 25):.1f}</div>
+                    <div class="tech-value">27.5</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-label">ATR (14)</div>
-                    <div class="tech-value">{market_data.get('atr', 15):.1f}</div>
+                    <div class="tech-value">26.6</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-label">VWAP</div>
-                    <div class="tech-value">{market_data.get('vwap', 0):.0f}</div>
+                    <div class="tech-value">1998</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-label">MA5</div>
-                    <div class="tech-value">{market_data.get('ma5', 0):.0f}</div>
+                    <div class="tech-value">1978</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-label">MA10</div>
-                    <div class="tech-value">{market_data.get('ma10', 0):.0f}</div>
+                    <div class="tech-value">1998</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-label">MA20</div>
-                    <div class="tech-value">{market_data.get('ma20', 0):.0f}</div>
+                    <div class="tech-value">2007</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-label">MA50</div>
-                    <div class="tech-value">{market_data.get('ma50', 0):.0f}</div>
+                    <div class="tech-value">1977</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-label">BB Middle</div>
-                    <div class="tech-value">{market_data.get('bb_middle', 0):.0f}</div>
+                    <div class="tech-value">2007</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-label">Vol Ratio</div>
-                    <div class="tech-value" style="color: {'#4ecdc4' if market_data.get('volume_ratio', 1) > 1.2 else '#feca57'}">{market_data.get('volume_ratio', 1):.2f}x</div>
+                    <div class="tech-value" style="color: #feca57">0.69x</div>
                 </div>
             </div>
         </div>
@@ -935,7 +935,7 @@
             <h2>👁️ CỔ PHIẾU ĐÁNG CHÚ Ý (VN30 - 30 mã)</h2>
             <div style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-bottom: 15px; font-size: 12px;">
                 <span>📡 <b>Nguồn:</b> TradingView (Real-time)</span> | 
-                <span>📅 <b>Cập nhật:</b> 2026-02-16T11:17:57.030033</span> |
+                <span>📅 <b>Cập nhật:</b> 2026-02-16T11:24:44.044351</span> |
                 <span>💡 <b>Hướng dẫn:</b> Cuộn xuống để xem tất cả • Click vào mỗi CP để xem chi tiết</span>
             </div>
             <div style="max-height: 800px; overflow-y: auto; padding-right: 5px; scrollbar-width: thin; scrollbar-color: #4ecdc4 rgba(0,0,0,0.3);">
@@ -1004,7 +1004,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #ff6b6b">
@@ -1071,7 +1071,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -1138,7 +1138,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -1205,7 +1205,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #ff6b6b">
@@ -1272,7 +1272,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -1339,7 +1339,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -1406,7 +1406,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -1473,7 +1473,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -1540,7 +1540,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -1607,7 +1607,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -1674,7 +1674,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #ff6b6b">
@@ -1741,7 +1741,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #ff6b6b">
@@ -1808,7 +1808,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #ff6b6b">
@@ -1875,7 +1875,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #ff6b6b">
@@ -1942,7 +1942,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -2009,7 +2009,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -2076,7 +2076,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -2143,7 +2143,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #ff6b6b">
@@ -2210,7 +2210,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -2277,7 +2277,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -2344,7 +2344,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -2411,7 +2411,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -2478,7 +2478,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -2545,7 +2545,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -2612,7 +2612,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -2679,7 +2679,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -2746,7 +2746,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #4ecdc4">
@@ -2813,7 +2813,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #ff6b6b">
@@ -2880,7 +2880,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
                 <div class="stock-card-expandable" style="border-color: #ff6b6b">
@@ -2947,7 +2947,7 @@
                             <div style="font-size: 13px;">Đang phân tích...</div>
                         </div>
                         
-                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:17:57.030033</div>
+                        <div style="font-size: 10px; color: #666; margin-top: 8px; text-align: right;">📡 TradingView - 2026-02-16T11:24:44.044351</div>
                     </div>
                 </div>
             </div>
@@ -3138,12 +3138,12 @@
 
                     <div class="news-summary" id="summary-0">
                         <div class="summary-title">📊 Phân tích AI</div>
-<ul class="summary-bullets"><li>Nhật Bản đã bị Ấn Độ vượt qua về quy mô GDP.</li><li>Nhật Bản mất vị trí nước xuất khẩu lớn thứ 4 thế giới vào tay một nền kinh tế trị giá 2,7 nghìn tỷ USD sau hơn một thập kỷ.</li><li>Sự kiện này đánh dấu một cột mốc quan trọng, phản ánh sự thay đổi đáng kể trong thứ hạng các nền kinh tế xuất khẩu hàng đầu thế giới.</li></ul>
+<ul class="summary-bullets"><li>Nhật Bản đã bị Ấn Độ vượt qua về quy mô Tổng sản phẩm quốc nội (GDP).</li><li>Nhật Bản mất vị trí là nước xuất khẩu lớn thứ 4 thế giới vào tay một nền kinh tế trị giá 2,7 nghìn tỷ USD.</li><li>Đây là lần đầu tiên sau một thập kỷ, quốc gia này đạt được cột mốc xuất khẩu quan trọng, vốn ít được dự đoán.</li></ul>
                         <div class="summary-impact">
-                            <b>📈 Tác động thị trường:</b> Phản ánh sự dịch chuyển cán cân kinh tế toàn cầu, có thể ảnh hưởng đến dòng chảy thương mại quốc tế, chiến lược đầu tư và định giá tiền tệ liên quan đến các nền kinh tế lớn.
+                            <b>📈 Tác động thị trường:</b> Sự thay đổi vị thế của Nhật Bản trong GDP và xuất khẩu cho thấy dịch chuyển trong cán cân kinh tế và thương mại toàn cầu, có thể ảnh hưởng đến dòng vốn đầu tư và chuỗi cung ứng quốc tế.
                         </div>
                         <div class="summary-vietnam">
-                            <b>🇻🇳 Liên quan VN:</b> Mặc dù không liên quan trực tiếp, sự thay đổi trong thứ hạng xuất khẩu toàn cầu có thể tác động gián tiếp đến Việt Nam thông qua chuỗi cung ứng, cạnh tranh thị trường xuất khẩu hoặc các mối quan hệ thương mại với Nhật Bản và các nền kinh tế lớn khác.
+                            <b>🇻🇳 Liên quan VN:</b> Việt Nam, với tư cách là đối tác thương mại và đầu tư quan trọng của Nhật Bản, có thể chịu tác động gián tiếp từ sự suy giảm vị thế kinh tế của Nhật, đồng thời cần theo dõi cơ hội hoặc thách thức từ các nền kinh tế đang lên.
                         </div>
                     <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
                         <a href="https://cafef.vn/bi-an-do-vuot-gdp-nhat-ban-lai-bi-nen-kinh-te-27-nghin-ty-usd-gianh-vi-tri-nuoc-xuat-khau-lon-thu-4-the-gioi-sau-ca-thap-ky-188260214231939448.chn" target="_blank" style="color: #4ecdc4; text-decoration: none; font-size: 12px;">
@@ -3167,12 +3167,12 @@
 
                     <div class="news-summary" id="summary-1">
                         <div class="summary-title">📊 Phân tích AI</div>
-<ul class="summary-bullets"><li>Nga đang đối mặt với tình trạng thiếu hụt nghiêm trọng hàng triệu lao động.</li><li>Nga đang tích cực tìm kiếm và đã xác định nguồn cung lao động dồi dào từ các quốc gia châu Á.</li><li>Việc nhập khẩu lao động từ châu Á được xem là giải pháp 'cứu tinh' giúp Nga bù đắp sự thiếu hụt nhân lực cấp bách.</li></ul>
+<ul class="summary-bullets"><li>Nga đang đối mặt với tình trạng thiếu hụt lao động nghiêm trọng, cần gấp hàng triệu công nhân.</li><li>Nga đã tìm thấy nguồn cung lao động dồi dào từ các quốc gia châu Á để giải quyết vấn đề này.</li><li>Đây được xem là một 'cứu tinh' giúp Nga khắc phục khủng hoảng thiếu hụt nhân lực.</li></ul>
                         <div class="summary-impact">
-                            <b>📈 Tác động thị trường:</b> Việc bổ sung nguồn lao động quy mô lớn có thể giúp Nga ổn định thị trường lao động, giảm áp lực thiếu hụt nhân sự và hỗ trợ tăng trưởng kinh tế, đồng thời tạo cơ hội việc làm và kiều hối cho các nước châu Á.
+                            <b>📈 Tác động thị trường:</b> Việc Nga thu hút lao động từ châu Á có thể giúp ổn định thị trường lao động trong nước, hỗ trợ tăng trưởng kinh tế trong các ngành thiếu nhân lực và tạo ra dòng chảy kiều hối.
                         </div>
                         <div class="summary-vietnam">
-                            <b>🇻🇳 Liên quan VN:</b> Việt Nam, với vai trò là một quốc gia châu Á có nguồn lao động dồi dào, có thể trở thành một trong những nguồn cung ứng lao động tiềm năng cho Nga, mang lại cơ hội việc làm và nguồn kiều hối.
+                            <b>🇻🇳 Liên quan VN:</b> Việt Nam, với tư cách là một quốc gia châu Á có nguồn lao động dồi dào, có tiềm năng trở thành một trong những nước cung cấp lao động cho Nga, mang lại cơ hội việc làm và nguồn kiều hối cho người dân.
                         </div>
                     <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
                         <a href="https://cafef.vn/nga-don-tin-buon-tu-11-trieu-nguoi-nhung-lap-tuc-thay-cuu-tinh-188260214232210313.chn" target="_blank" style="color: #4ecdc4; text-decoration: none; font-size: 12px;">
@@ -3196,12 +3196,12 @@
 
                     <div class="news-summary" id="summary-2">
                         <div class="summary-title">📊 Phân tích AI</div>
-<ul class="summary-bullets"><li>Nga đã thu về 15 tỷ USD từ việc xuất khẩu một "mặt hàng đặc biệt" cho hơn 30 quốc gia.</li><li>Thành công này diễn ra bất chấp các lệnh trừng phạt của phương Tây, cho thấy khả năng vượt qua các rào cản kinh tế.</li><li>Chất lượng của sản phẩm Nga được đánh giá cao, thậm chí vượt trội so với sản phẩm của Mỹ.</li><li>Nga hiện là nhà xuất khẩu lớn thứ 3 thế giới trong lĩnh vực này, chỉ sau Mỹ và Pháp.</li></ul>
+<ul class="summary-bullets"><li>Nga đã thu về 15 tỷ USD từ việc xuất khẩu một loại hàng hóa đặc biệt cho hơn 30 quốc gia, cho thấy khả năng vượt qua các lệnh trừng phạt của phương Tây.</li><li>Chất lượng của mặt hàng này từ Nga được đánh giá là vượt trội so với hàng của Mỹ.</li><li>Nga hiện là nước xuất khẩu lớn thứ ba thế giới về mặt hàng này, chỉ sau Mỹ và Pháp.</li></ul>
                         <div class="summary-impact">
-                            <b>📈 Tác động thị trường:</b> Sự kiện này cho thấy hiệu quả hạn chế của các lệnh trừng phạt đối với một số lĩnh vực xuất khẩu của Nga, đồng thời tăng cường vị thế cạnh tranh của Nga trên thị trường toàn cầu và có thể thúc đẩy sự dịch chuyển trong chuỗi cung ứng.
+                            <b>📈 Tác động thị trường:</b> Thông tin này cho thấy khả năng phục hồi và duy trì vị thế của Nga trong các thị trường xuất khẩu chiến lược bất chấp lệnh trừng phạt, có thể làm thay đổi động thái cạnh tranh trên thị trường quốc tế đối với các sản phẩm chuyên biệt và đặt ra câu hỏi về hiệu quả của các biện pháp cấm vận.
                         </div>
                         <div class="summary-vietnam">
-                            <b>🇻🇳 Liên quan VN:</b> Không có thông tin cụ thể về loại hàng hóa hay các quốc gia mua hàng để xác định sự liên quan trực tiếp đến Việt Nam.
+                            <b>🇻🇳 Liên quan VN:</b> Với tư cách là đối tác truyền thống và nhập khẩu lớn các thiết bị quốc phòng từ Nga, thông tin này có thể ảnh hưởng đến chiến lược mua sắm và an ninh quốc phòng của Việt Nam, đặc biệt là về khả năng tiếp cận các sản phẩm chất lượng cao từ Nga trong bối cảnh cấm vận.
                         </div>
                     <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
                         <a href="https://cafef.vn/be-gay-lenh-trung-phat-cua-phuong-tay-nga-thu-ve-15-ty-usd-nho-ban-hang-dac-biet-cho-hon-30-nuoc-chat-luong-tham-chi-con-vuot-hang-my-188260214232346604.chn" target="_blank" style="color: #4ecdc4; text-decoration: none; font-size: 12px;">
@@ -3225,12 +3225,12 @@
 
                     <div class="news-summary" id="summary-3">
                         <div class="summary-title">📊 Phân tích AI</div>
-<ul class="summary-bullets"><li>Việt Nam được cho là đã xác lập thành công trong việc làm chủ một công nghệ vũ khí tiên tiến mà ít quốc gia trên thế giới sở hữu.</li><li>Một 'ngôi sao lớn' (có thể là một đối tác, công ty, hoặc quốc gia quan trọng) đã chốt một thỏa thuận liên quan đến công nghệ này.</li><li>Thành tựu này có thể nâng cao đáng kể năng lực quốc phòng và vị thế công nghệ của Việt Nam trên trường quốc tế.</li></ul>
+<ul class="summary-bullets"><li>Việt Nam đã đạt được thành công trong việc làm chủ một công nghệ vũ khí tiên tiến mà 'ít nước làm chủ được'.</li><li>Một thỏa thuận quan trọng liên quan đến công nghệ này vừa được chốt với một 'ngôi sao lớn' (một thực thể hoặc đối tác quan trọng).</li><li>Chi tiết cụ thể về loại công nghệ vũ khí, danh tính 'ngôi sao lớn' và bản chất thỏa thuận chưa được tiết lộ.</li></ul>
                         <div class="summary-impact">
-                            <b>📈 Tác động thị trường:</b> Thông tin này có thể tạo ra sự quan tâm đối với các nhà đầu tư trong lĩnh vực công nghệ quốc phòng, đặc biệt là các công ty có tiềm năng hợp tác hoặc cung ứng, đồng thời có thể ảnh hưởng đến các mối quan hệ thương mại và địa chính trị liên quan đến quốc phòng.
+                            <b>📈 Tác động thị trường:</b> Tác động thị trường chưa rõ ràng do thiếu chi tiết, nhưng có thể tạo tín hiệu tích cực cho ngành công nghiệp quốc phòng hoặc công nghệ cao của Việt Nam.
                         </div>
                         <div class="summary-vietnam">
-                            <b>🇻🇳 Liên quan VN:</b> Trực tiếp liên quan đến năng lực quốc phòng, vị thế công nghệ và tiềm năng phát triển kinh tế của Việt Nam thông qua các thỏa thuận quốc tế và chuyển giao công nghệ.
+                            <b>🇻🇳 Liên quan VN:</b> Liên quan trực tiếp, thể hiện sự nâng cao năng lực công nghệ quốc phòng và vị thế chiến lược của Việt Nam.
                         </div>
                     <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
                         <a href="https://cafef.vn/viet-nam-xac-lap-thanh-cong-voi-cong-nghe-vu-khi-it-nuoc-lam-chu-duoc-mot-ngoi-sao-lon-vua-chot-thoa-thuan-188260214193640856.chn" target="_blank" style="color: #4ecdc4; text-decoration: none; font-size: 12px;">
@@ -3254,12 +3254,12 @@
 
                     <div class="news-summary" id="summary-4">
                         <div class="summary-title">📊 Phân tích AI</div>
-<ul class="summary-bullets"><li>Nga được cho là đã nhận thông tin tiêu cực từ phía Trung Quốc.</li><li>Nội dung chi tiết của 'tin buồn' không được cung cấp trong bản tin.</li><li>Bản chất và phạm vi của sự kiện chưa rõ ràng, không thể phân tích cụ thể.</li></ul>
+<ul class="summary-bullets"><li>Nga đã nhận được một thông tin không mấy tích cực từ Trung Quốc.</li><li>Nội dung cụ thể của 'tin buồn' không được tiết lộ trong thông tin cung cấp.</li><li>Thông tin hiện tại không đủ để xác định lĩnh vực hoặc bản chất của sự việc.</li></ul>
                         <div class="summary-impact">
-                            <b>📈 Tác động thị trường:</b> Tác động đến thị trường không thể xác định do thiếu thông tin chi tiết về bản chất của 'tin buồn' từ Trung Quốc đối với Nga.
+                            <b>📈 Tác động thị trường:</b> Không thể xác định tác động thị trường do thiếu thông tin chi tiết về bản chất và mức độ của 'tin buồn'.
                         </div>
                         <div class="summary-vietnam">
-                            <b>🇻🇳 Liên quan VN:</b> Không liên quan trực tiếp do thiếu thông tin cụ thể về sự kiện và nội dung của 'tin buồn'.
+                            <b>🇻🇳 Liên quan VN:</b> Không thể xác định liên quan trực tiếp đến Việt Nam do thiếu thông tin cụ thể về nội dung của tin tức.
                         </div>
                     <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
                         <a href="https://cafef.vn/nga-nhan-tin-buon-tu-trung-quoc-18826021414271663.chn" target="_blank" style="color: #4ecdc4; text-decoration: none; font-size: 12px;">
@@ -3283,12 +3283,12 @@
 
                     <div class="news-summary" id="summary-5">
                         <div class="summary-title">📊 Phân tích AI</div>
-<ul class="summary-bullets"><li>Một quốc gia chủ chốt trong khối BRICS đang xem xét nối lại việc sử dụng đồng USD.</li><li>Quyết định này được đưa ra sau nhiều năm quốc gia đó nỗ lực phi đô la hoá.</li><li>Thông tin không nêu rõ tên quốc gia BRICS cụ thể hay lý do chi tiết đằng sau sự thay đổi chính sách tiềm năng này.</li></ul>
+<ul class="summary-bullets"><li>Một quốc gia chủ chốt trong khối BRICS đang cân nhắc nối lại việc sử dụng đồng USD.</li><li>Động thái này diễn ra sau nhiều năm quốc gia đó đã nỗ lực giảm sự phụ thuộc vào đồng USD (phi đô la hóa).</li><li>Đây là một sự đảo ngược chiến lược đáng kể, đặt ra câu hỏi về tính hiệu quả và bền vững của các sáng kiến phi đô la hóa trong khối BRICS.</li></ul>
                         <div class="summary-impact">
-                            <b>📈 Tác động thị trường:</b> Sự kiện này có thể báo hiệu những thách thức trong nỗ lực phi đô la hóa toàn cầu, tiềm năng củng cố vị thế của USD và gây ra sự bất ổn hoặc định hình lại dòng chảy vốn quốc tế.
+                            <b>📈 Tác động thị trường:</b> Sự kiện này có thể củng cố vị thế của USD trên thị trường toàn cầu và tạo ra sự không chắc chắn về tương lai của các nỗ lực phi đô la hóa, ảnh hưởng đến tâm lý nhà đầu tư.
                         </div>
                         <div class="summary-vietnam">
-                            <b>🇻🇳 Liên quan VN:</b> Đối với Việt Nam, một nền kinh tế mở, sự thay đổi trong chính sách tiền tệ của một quốc gia BRICS có thể ảnh hưởng gián tiếp đến thương mại, đầu tư và tỷ giá hối đoái thông qua những biến động trong hệ thống tài chính toàn cầu.
+                            <b>🇻🇳 Liên quan VN:</b> Nếu USD mạnh lên do động thái này, có thể gây áp lực lên tỷ giá VND/USD và ảnh hưởng đến hoạt động xuất nhập khẩu của Việt Nam; đồng thời nhấn mạnh những thách thức trong việc giảm phụ thuộc vào USD mà Việt Nam cũng đang quan tâm.
                         </div>
                     <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
                         <a href="https://cafef.vn/sau-nhieu-nam-no-luc-phi-do-la-hoa-quoc-gia-chu-chot-brics-can-nhac-noi-lai-su-dung-usd-chuyen-gi-dang-xay-ra-18826021316575437.chn" target="_blank" style="color: #4ecdc4; text-decoration: none; font-size: 12px;">
@@ -3312,12 +3312,12 @@
 
                     <div class="news-summary" id="summary-6">
                         <div class="summary-title">📊 Phân tích AI</div>
-<ul class="summary-bullets"><li>Một quốc gia Đông Nam Á đã lựa chọn Trung Quốc xây dựng dự án đường sắt cao tốc trị giá hơn 7 tỷ USD, thay vì Nhật Bản.</li><li>Dự án này đã khiến quốc gia Đông Nam Á đó phải gánh chịu một khoản nợ khổng lồ.</li><li>Quốc gia này buộc phải sử dụng ngân sách quốc gia hàng năm để trả nợ cho Bắc Kinh.</li></ul>
+<ul class="summary-bullets"><li>Trung Quốc được chọn xây dựng dự án đường sắt cao tốc trị giá hơn 7 tỷ USD tại một quốc gia Đông Nam Á, thay thế Nhật Bản.</li><li>Quốc gia Đông Nam Á này đang phải gánh khoản nợ khổng lồ và buộc phải dùng ngân sách quốc gia để trả nợ cho Trung Quốc hàng năm.</li><li>Sự việc này phản ánh xu hướng các nước trong khu vực lựa chọn đối tác xây dựng và tài trợ cơ sở hạ tầng, đồng thời nêu bật rủi ro nợ công tiềm ẩn.</li></ul>
                         <div class="summary-impact">
-                            <b>📈 Tác động thị trường:</b> Sự kiện này có thể gây lo ngại về tính bền vững tài chính của các dự án cơ sở hạ tầng lớn được tài trợ bởi nước ngoài, tiềm ẩn rủi ro về nợ công và xếp hạng tín dụng cho các quốc gia nhận đầu tư.
+                            <b>📈 Tác động thị trường:</b> Sự việc cho thấy rủi ro tài chính và áp lực ngân sách mà các dự án cơ sở hạ tầng quy mô lớn, được tài trợ bởi nước ngoài, có thể gây ra cho các nền kinh tế đang phát triển.
                         </div>
                         <div class="summary-vietnam">
-                            <b>🇻🇳 Liên quan VN:</b> Mặc dù không trực tiếp liên quan, trường hợp này là một bài học cảnh báo cho Việt Nam và các nước trong khu vực về rủi ro nợ công và tính bền vững tài chính khi thực hiện các dự án cơ sở hạ tầng quy mô lớn, đặc biệt là với các khoản vay nước ngoài.
+                            <b>🇻🇳 Liên quan VN:</b> Mặc dù quốc gia cụ thể không được nêu tên, đây là một trường hợp điển hình và bài học cảnh báo cho Việt Nam trong việc lựa chọn đối tác và quản lý tài chính cho các dự án cơ sở hạ tầng lớn, đặc biệt là đường sắt cao tốc, nhằm tránh gánh nặng nợ công.
                         </div>
                     <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
                         <a href="https://cafef.vn/loai-nhat-ban-chot-trung-quoc-xay-duong-sat-cao-toc-hon-7-ty-usd-mot-nuoc-dong-nam-a-ganh-khoan-no-khung-phai-dung-ngan-sach-de-tra-no-bac-kinh-moi-nam-188260213114905539.chn" target="_blank" style="color: #4ecdc4; text-decoration: none; font-size: 12px;">
@@ -3341,12 +3341,12 @@
 
                     <div class="news-summary" id="summary-7">
                         <div class="summary-title">📊 Phân tích AI</div>
-<ul class="summary-bullets"><li>Ông Lý Quang Diệu, cựu Thủ tướng Singapore, đã hai lần nhận được thư đề nghị hỗ trợ Việt Nam.</li><li>Bài viết hé lộ 'bí quyết 3-12-15', được cho là một phần quan trọng trong tư duy chiến lược của ông.</li><li>Nội dung tập trung vào phân tích bộ óc chiến lược của ông Lý Quang Diệu thông qua các sự kiện liên quan đến Việt Nam.</li></ul>
+<ul class="summary-bullets"><li>Cựu Thủ tướng Singapore Lý Quang Diệu được cho là đã hai lần nhận được thư đề nghị giúp đỡ Việt Nam.</li><li>Bài viết hé lộ về một 'bí quyết 3-12-15' được cho là nằm sau tư duy chiến lược của ông Lý Quang Diệu.</li><li>Thông tin chi tiết về nội dung các lá thư hay bản chất của 'bí quyết 3-12-15' không được cung cấp trong tiêu đề.</li></ul>
                         <div class="summary-impact">
-                            <b>📈 Tác động thị trường:</b> Tin tức này mang tính chất lịch sử và phân tích chiến lược cá nhân, không có tác động trực tiếp đến thị trường tài chính hiện tại.
+                            <b>📈 Tác động thị trường:</b> Thông tin này mang tính lịch sử và phân tích cá nhân về tư duy lãnh đạo, không có tác động trực tiếp hoặc tức thì đến thị trường tài chính quốc tế.
                         </div>
                         <div class="summary-vietnam">
-                            <b>🇻🇳 Liên quan VN:</b> Bài viết liên quan đến các tương tác lịch sử và tư duy chiến lược của ông Lý Quang Diệu đối với Việt Nam, nhưng không có tác động trực tiếp đến tình hình kinh tế hoặc chính sách hiện tại của Việt Nam.
+                            <b>🇻🇳 Liên quan VN:</b> Liên quan đến Việt Nam thông qua việc nhắc đến các đề nghị giúp đỡ trong quá khứ, có thể gợi mở về những bài học chiến lược hoặc quan hệ ngoại giao.
                         </div>
                     <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.1);">
                         <a href="https://cafef.vn/ong-ly-quang-dieu-2-lan-nhan-duoc-thu-nho-giup-viet-nam-he-lo-bi-quyet-3-12-15-phia-sau-bo-oc-chien-luoc-188260213201951643.chn" target="_blank" style="color: #4ecdc4; text-decoration: none; font-size: 12px;">
